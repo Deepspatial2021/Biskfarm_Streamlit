@@ -1,0 +1,9 @@
+joblib==1.2.0
+matplotlib==3.7.1
+numpy==1.25.0
+pandas==2.0.3
+Pillow
+plotly==5.15.0
+scikit_learn==1.2.2
+streamlit==1.24.0
+openpyxl
