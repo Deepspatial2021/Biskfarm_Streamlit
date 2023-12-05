@@ -87,7 +87,7 @@ def print_solution(manager, routing, solution, data):
 
 # Streamlit UI
 def main_streamlit():
-    st.title("Vehicle Routing Order Sequence")
+    st.title("Vehicle Routing Order Sequence - KB3 Route Code")
     data = create_data_model()
     manager = pywrapcp.RoutingIndexManager(len(data['distance_matrix']), data['num_vehicles'], data['depot'])
     routing = pywrapcp.RoutingModel(manager)
