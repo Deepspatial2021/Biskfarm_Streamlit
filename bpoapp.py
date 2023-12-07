@@ -7,8 +7,8 @@ from geopy.distance import geodesic
 st.set_page_config(page_title='Biskfarm Beat Plan Optimization Route Order Sequence', layout="wide")
 
 # Load the model and data
-model = pickle.load(open('C:/Users/Umanaveenkumar/Downloads/Agriculture-Crop_Yield_Rediction_Model/rfr_model.pkl', 'rb'))
-data = pd.read_excel("C:/Users/Umanaveenkumar/Downloads/Agriculture-Crop_Yield_Rediction_Model/BF_Final_Data_for_Analysis_9226_Retailers_Modified.xlsx")
+model = pickle.load(open('rfr_model.pkl', 'rb'))
+data = pd.read_excel("BF_Final_Data_for_Analysis_9226_Retailers_Modified.xlsx")
 df = pd.DataFrame(data)
 
 # HTML template for styling
