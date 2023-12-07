@@ -17,7 +17,7 @@ html_temp = """
     <h4 style="color:white;text-align:center;">Biskfarm BPO Model</h4>
     </div>
     <div style="background-color:white;padding:7px">
-    <h3 style="color:black;text-align:center;font-size:15px; font-weight:bold">Vehicle Route Order Sequence</h3>
+    <h3 style="color:black;text-align:left;font-size:20px; font-weight:bold">Vehicle Route Order Sequence</h3>
     </div>
     <style>
     [data-testid="stAppViewContainer"]{
