@@ -36,7 +36,7 @@ st.markdown(html_temp, unsafe_allow_html=True)
 
 # Streamlit UI
 def main_streamlit():
-    st.sidebar.title("Biskfarm BPO")
+    st.sidebar.title("Biskfarm Beat Plan Optimizer")
 
     # Take Inputs in the sidebar
     Distributor = st.sidebar.selectbox("Distributor", df['Distributor_Code'].unique())
