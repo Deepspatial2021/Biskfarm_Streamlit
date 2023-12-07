@@ -14,7 +14,7 @@ df = pd.DataFrame(data)
 # HTML template for styling
 html_temp = """
     <div style="background-color:#032863;padding:2px">
-    <h5 style="color:white;text-align:center;">Biskfarm Beat Plan Optimization Model</h5>
+    <h6 style="color:white;text-align:center;">Biskfarm Beat Plan Optimization Model</h6>
     </div>
     <div style="background-color:white;padding:7px">
     <h4 style="color:black;text-align:center;font-size:15px; font-weight:bold">Vehicle Route Order Sequence</h4>
