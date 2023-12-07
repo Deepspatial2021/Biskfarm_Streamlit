@@ -14,10 +14,10 @@ df = pd.DataFrame(data)
 # HTML template for styling
 html_temp = """
     <div style="background-color:#032863;padding:10px">
-    <h2 style="color:white;text-align:center;">Biskfarm Beat Plan Optimization Route Order Sequence</h2>
+    <h4 style="color:white;text-align:center;">Biskfarm Beat Plan Optimization Model</h4>
     </div>
     <div style="background-color:white;padding:7px">
-    <h2 style="color:black;text-align:center;font-size:30px; font-weight:bold">Vehicle Route Order Sequence Prediction Model</h2>
+    <h4 style="color:black;text-align:center;font-size:15px; font-weight:bold">Vehicle Route Order Sequence</h4>
     </div>
     <style>
     [data-testid="stAppViewContainer"]{
@@ -52,7 +52,7 @@ def main_streamlit():
         filtered_data = df[(df['Distributor_Code'] == Distributor) & (df['route_code'] == RouteCode)].reset_index(drop=True)
 
         # Display basic information about the selected route
-        st.subheader("Retailer Sequence for Selected Route")
+        st.subheader("Retailer Sequence")
         st.write(f"Selected Distributor: {Distributor}")
         st.write(f"Selected Route Code: {RouteCode}")
 
