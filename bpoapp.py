@@ -52,7 +52,7 @@ def main_streamlit():
         filtered_data = df[(df['Distributor_Code'] == Distributor) & (df['route_code'] == RouteCode)].reset_index(drop=True)
 
         # Display basic information about the selected route
-        st.subheader("Retailer Sequence")
+        # st.subheader("Retailer Sequence")
         st.write(f"Selected Distributor: {Distributor}")
         st.write(f"Selected Route Code: {RouteCode}")
 
