@@ -13,7 +13,7 @@ df = pd.DataFrame(data)
 
 # HTML template for styling
 html_temp = """
-    <div style="background-color:#032863;padding:10px">
+    <div style="background-color:#032863;padding:0px">
     <h6 style="color:white;text-align:center;">Biskfarm Beat Plan Optimization Model</h6>
     </div>
     <div style="background-color:white;padding:7px">
