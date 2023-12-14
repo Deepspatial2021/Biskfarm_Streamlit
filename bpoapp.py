@@ -4,7 +4,7 @@ from ortools.constraint_solver import pywrapcp
 import pandas as pd
 from geopy.distance import geodesic
 
-st.set_page_config(page_title='Biskfarm Beat Plan Optimization Route Order Sequence', layout="wide")
+st.set_page_config(page_title='Beat Plan Optimization-Route Order Sequence', layout="wide")
 # Load the model and data
 model = pickle.load(
     open('rfr_model.pkl', 'rb'))
@@ -15,10 +15,10 @@ df = pd.DataFrame(data)
 # HTML template for styling
 html_temp = """
     <div style="background-color:#032863;padding:10px">
-    <h2 style="color:white;text-align:center;">Biskfarm Beat Plan Optimization Route Order Sequence</h2>
+    <h2 style="color:white;text-align:center;">Beat Plan Optimization-Route Order Sequence</h2>
     </div>
     <div style="background-color:white;padding:7px">
-    <h2 style="color:black;text-align:center;font-size:30px; font-weight:bold">Salesman Beat Route Order Sequence Prediction Model</h2>
+    <h2 style="color:black;text-align:center;font-size:30px; font-weight:bold">Beat Plan Prediction Model</h2>
     </div>
     <style>
     [data-testid="stAppViewContainer"]{
@@ -38,17 +38,18 @@ st.markdown(html_temp, unsafe_allow_html=True)
 
 # Streamlit UI
 def main_streamlit():
-    st.sidebar.title("Biskfarm BPO")
+    st.sidebar.title("Generate Optimal Beat Plan")
+    st.sidebar.title("(Existing Retailers)")
     # Take Inputs in the sidebar
-    Distributor = st.sidebar.selectbox("Distributor", df['Distributor_Code'].unique())
+    Distributor = st.sidebar.selectbox("Select Distributor", df['Distributor_Code'].unique())
     farm_num_df = df.groupby(['Distributor_Code'])['route_code'].unique().reset_index()
     pivot_df = pd.pivot_table(farm_num_df, index='Distributor_Code', values='route_code', aggfunc=lambda x: x)
     pivot_df_2 = pivot_df.applymap(lambda z: z[:1] if isinstance(z, list) else z)
     exploded_df = pivot_df['route_code'].explode().reset_index()
     filtered_routes = exploded_df[exploded_df['Distributor_Code'] == Distributor]
-    RouteCode = st.sidebar.selectbox("Route Code", filtered_routes['route_code'].unique())
+    RouteCode = st.sidebar.selectbox("Select Route Code", filtered_routes['route_code'].unique())
 
-    if st.sidebar.button("Retailer Order Sequence"):
+    if st.sidebar.button("Generate Optimal Beat Plan"):
         # Filter data based on selected distributor and route code
         filtered_data = df[(df['Distributor_Code'] == Distributor) & (df['route_code'] == RouteCode)].reset_index(
             drop=True)
@@ -150,7 +151,7 @@ model = pickle.load(
     open('rfr_model.pkl', 'rb'))
 
 # Upload new retailers location file
-uploaded_file = st.file_uploader("Upload the New Retailers Location File")
+uploaded_file = st.file_uploader("Upload New Retailers List with Lat/Lon (eg.4636,KRT,22.4988249,88.3837203,27307)")
 
 if uploaded_file is not None:
     # Read the uploaded file directly into a DataFrame
@@ -163,16 +164,16 @@ if 'data1' in locals() or 'data1' in globals():
     st.write("Uploaded DataFrame:", data1)
 
     def main_streamlit_new_retailers():
-        st.sidebar.title("Biskfarm BPO New Retailers")
+        st.sidebar.title("Generate Optimal Beat Plan New Retailer")
 
         # Take Inputs in the sidebar
-        Distributor1 = st.sidebar.selectbox("Distributor New Retailers", data1['Distributor_Code_New'].unique())
+        Distributor1 = st.sidebar.selectbox("Select Distributor New Retailers", data1['Distributor_Code_New'].unique())
         farm_num_df1 = data1.groupby(['Distributor_Code_New'])['Route_Code_New'].unique().reset_index()
         pivot_df1 = pd.pivot_table(farm_num_df1, index='Distributor_Code_New', values='Route_Code_New', aggfunc=lambda x: x)
         pivot_df_3 = pivot_df1.applymap(lambda z: z[:1] if isinstance(z, list) else z)
         exploded_df1 = pivot_df1['Route_Code_New'].explode().reset_index()
         filtered_routes1 = exploded_df1[exploded_df1['Distributor_Code_New'] == Distributor1]
-        RouteCode1 = st.sidebar.selectbox("Route Code New Retailers", filtered_routes1['Route_Code_New'].unique())
+        RouteCode1 = st.sidebar.selectbox("Select Route Code New Retailers", filtered_routes1['Route_Code_New'].unique())
 
         if st.sidebar.button("New Retailer Order Sequence"):
             # Filter data based on selected distributor and route code
