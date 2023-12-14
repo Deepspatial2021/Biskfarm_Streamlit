@@ -15,14 +15,16 @@ df = pd.DataFrame(data)
 # HTML template for styling
 html_temp = """
     <div style="background-color:#032863;padding:10px">
-    <h2 style="color:white;text-align:center;">Beat Plan Optimization-Route Order Sequence</h2>
+    <h2 style="color:white;text-align:center;">Beat Plan Optimization - Route Order Sequence</h2>
     </div>
     <div style="background-color:white;padding:7px">
     <h2 style="color:black;text-align:center;font-size:30px; font-weight:bold">Beat Plan Prediction Model</h2>
     </div>
     <style>
     [data-testid="stAppViewContainer"]{
-        opacity: 0.8;
+        background-image: url("https://th.bing.com/th/id/OIP.ju1J5_yZxXdlnQfvYIHX5AHaE7?rs=1&pid=ImgDetMain");
+        background-size: cover;
+        opacity: 0.7;
         }
     [data-testid="stHeader"]{
         background-color:rgba(255,255,255);
@@ -39,7 +41,7 @@ st.markdown(html_temp, unsafe_allow_html=True)
 # Streamlit UI
 def main_streamlit():
     st.sidebar.title("Generate Optimal Beat Plan")
-    st.sidebar.title("(Existing Retailers)")
+    st.sidebar.subheader("(Existing Retailers)")
     # Take Inputs in the sidebar
     Distributor = st.sidebar.selectbox("Select Distributor", df['Distributor_Code'].unique())
     farm_num_df = df.groupby(['Distributor_Code'])['route_code'].unique().reset_index()
@@ -164,25 +166,24 @@ if 'data1' in locals() or 'data1' in globals():
     st.write("Uploaded DataFrame:", data1)
 
     def main_streamlit_new_retailers():
-        st.sidebar.title("Generate Optimal Beat Plan New Retailer")
-
+        st.subheader("Generate Optimal Beat Plan- New Retailers")
         # Take Inputs in the sidebar
-        Distributor1 = st.sidebar.selectbox("Select Distributor New Retailers", data1['Distributor_Code_New'].unique())
+        Distributor1 = st.selectbox("Distributor New Retailers", data1['Distributor_Code_New'].unique())
         farm_num_df1 = data1.groupby(['Distributor_Code_New'])['Route_Code_New'].unique().reset_index()
         pivot_df1 = pd.pivot_table(farm_num_df1, index='Distributor_Code_New', values='Route_Code_New', aggfunc=lambda x: x)
         pivot_df_3 = pivot_df1.applymap(lambda z: z[:1] if isinstance(z, list) else z)
         exploded_df1 = pivot_df1['Route_Code_New'].explode().reset_index()
         filtered_routes1 = exploded_df1[exploded_df1['Distributor_Code_New'] == Distributor1]
-        RouteCode1 = st.sidebar.selectbox("Select Route Code New Retailers", filtered_routes1['Route_Code_New'].unique())
+        RouteCode1 = st.selectbox("Route Code New Retailers", filtered_routes1['Route_Code_New'].unique())
 
-        if st.sidebar.button("New Retailer Order Sequence"):
+        if st.button("New Retailer Order Sequence"):
             # Filter data based on selected distributor and route code
             filtered_data = data1[
                 (data1['Distributor_Code_New'] == Distributor1) & (data1['Route_Code_New'] == RouteCode1)].reset_index(
                 drop=True)
 
             # Display basic information about the selected route
-            st.subheader("Retailer Sequence for Selected Route")
+            st.subheader("New Retailer Sequence for Selected Route")
             st.write(f"Selected Distributor: {Distributor1}")
             st.write(f"Selected Route Code: {RouteCode1}")
 
