@@ -22,7 +22,7 @@ html_temp = """
     </div>
     <style>
     [data-testid="stAppViewContainer"]{
-        background-image: url("https://th.bing.com/th/id/OIP.ju1J5_yZxXdlnQfvYIHX5AHaE7?rs=1&pid=ImgDetMain");
+        # background-image: url("https://th.bing.com/th/id/OIP.ju1J5_yZxXdlnQfvYIHX5AHaE7?rs=1&pid=ImgDetMain");
         background-size: cover;
         opacity: 0.7;
         }
