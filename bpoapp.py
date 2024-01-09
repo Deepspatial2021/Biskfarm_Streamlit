@@ -9,7 +9,7 @@ st.set_page_config(page_title='Beat Plan Optimization-Route Order Sequence', lay
 model = pickle.load(
     open('rfr_model.pkl', 'rb'))
 data = pd.read_excel(
-    "BF_Final_Data_for_Analysis_9226_Retailers_Modified.xlsx")
+    "BF_Final_Data_for_Analysis_9226_Retailers_Modified_09_01_2024.xlsx")
 df = pd.DataFrame(data)
 
 # HTML template for styling
